@@ -8,14 +8,14 @@
   @for (pokemon  of PokemonList; track $index) {
   
    <div  class="col m4 s6 ">
-      <div class="card horizontal">
+      <div class="card horizontal" pkmnBorderCard>
         <div class="card-image">
         <img src="{{pokemon.picture}}" alt="pokemonImage">
         </div>
         <div class="card-stacked">
           <div class="card-content">
             <p>{{pokemon.name}}</p>
-            <p><small>{{pokemon.created}}</small></p>
+            <p><small>{{pokemon.created|date|uppercase}}</small></p>
           </div>
         </div>
       </div>

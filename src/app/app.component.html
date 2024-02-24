@@ -1,12 +1,12 @@
 
 
 
-<main class="main">
-  <h1>test tous  premier component
-    Mon Titre :{{PokemonList[2]}}
-
-  </h1>
-</main>
-<h1>Mon Titre :{{PokemonList[1]}}</h1>
-
+<H1>Liste des Pokemons</H1>
+<input 
+  #input
+  (keyup)="selectpokemon(input.value)"
+  type="text">
+  <p>{{pokemonselectted?.name}}</p>
+<h1>Mon Titre :{{PokemonList[1].name}}</h1>
+<p>{{ pokemonselectted?.name }}</p>
 <router-outlet />

@@ -1,12 +1,28 @@
 
 
 
-<H1>Liste des Pokemons</H1>
-<input 
-  #input
-  (keyup)="selectpokemon(input.value)"
-  type="text">
-  <p>{{pokemonselectted?.name}}</p>
-<h1>Mon Titre :{{PokemonList[1].name}}</h1>
-<p>{{ pokemonselectted?.name }}</p>
+<H1 class="center">Liste des Pokemons</H1>
+
+<div class="container"> 
+  <div class="row" >
+  @for (pokemon  of PokemonList; track $index) {
+  
+   <div  class="col m4 s6 ">
+      <div class="card horizontal">
+        <div class="card-image">
+        <img src="{{pokemon.picture}}" alt="pokemonImage">
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <p>{{pokemon.name}}</p>
+            <p><small>{{pokemon.created}}</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+    }
+  </div>
+</div>
+
 <router-outlet />

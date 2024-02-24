@@ -8,7 +8,7 @@ import { Pokemon } from './pokemon';
 })
 export class AppComponent implements OnInit {
   PokemonList:Pokemon[]=POKEMONS;
-  pokemonselectted:Pokemon|undefined;
+  pokemonselected:Pokemon|undefined;
   
 
   ngOnInit(): void {
@@ -21,11 +21,11 @@ export class AppComponent implements OnInit {
     const pokemon:Pokemon|undefined=this.PokemonList.find(pokemon=>pokemon.id==+pokemon)
     if(pokemon){
       console.log(`Vous avez cliqué sur le Pokémon ${pokemon.name}`)
-      this.pokemonselectted=pokemon
+      this.pokemonselected=pokemon
     }
     else{
       console.log(`vous avez demandé un pokemon qui n'existe pas .`)
-      this.pokemonselectted=pokemon;
+      this.pokemonselected=pokemon;
       
     }
     ;

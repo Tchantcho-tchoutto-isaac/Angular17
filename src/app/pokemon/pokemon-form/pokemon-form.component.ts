@@ -23,7 +23,14 @@ type:string[];
   return this.Pokemon.types.includes(type);
  }
 selectType($event:Event,type:string){
+const ischeked:boolean =($event.target as HTMLInputElement).checked  
+if (ischeked) {
+  this.Pokemon.types.push(type);
   
+}else{
+  const index=this.Pokemon.types.indexOf(type);
+  this.Pokemon.types.splice(index,1);
+}
 
 }
 onsubmit(){

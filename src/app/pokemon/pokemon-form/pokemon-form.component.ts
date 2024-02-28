@@ -1,6 +1,7 @@
 import { Component, OnInit, input } from '@angular/core';
 import { PokemonService } from '../pokemon.service';
 import { Pokemon } from '../pokemon';
+import {Router } from '@angular/router';
 
 @Component({
   selector: 'app-pokemon-form',
@@ -11,7 +12,7 @@ export class PokemonFormComponent implements OnInit {
 @Input() Pokemon:Pokemon;
 type:string[];
 
-  constructor(private pokemonservice:PokemonService){
+  constructor(private pokemonservice:PokemonService,private router :Router){
 
   }
 
@@ -34,6 +35,7 @@ if (ischeked) {
 
 }
 onsubmit(){
-
+ console.log('submit form');
+ this.router.navigate(['/pokemon',this.Pokemon.id])
 }
 }

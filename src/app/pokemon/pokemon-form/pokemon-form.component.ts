@@ -22,7 +22,8 @@ type:string[];
  hasType(type:string):boolean{
   return this.Pokemon.types.includes(type);
  }
-selectType(){
+selectType($event:Event,type:string){
+  
 
 }
 onsubmit(){

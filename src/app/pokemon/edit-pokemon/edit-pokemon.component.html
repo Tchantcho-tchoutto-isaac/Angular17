@@ -1,1 +1,8 @@
-<p>edit-pokemon works!</p>
+
+<div class="center">
+
+ @if (pokemon
+ ) {<img [src]="pokemon.picture">
+ <app-pokemon-form [pokemon]="pokemon"></app-pokemon-form>
+}
+</div>

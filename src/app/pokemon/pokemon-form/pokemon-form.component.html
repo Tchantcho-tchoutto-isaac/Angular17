@@ -1,6 +1,8 @@
 <p>pokemon-form works!</p>
 
-@if (Pokemon) {<form  (ngSubmit)="onSubmit()" #pokemonForm="ngForm">
+@if (pokemon) 
+{
+  <form  (ngSubmit)="onSubmit()" #pokemonForm="ngForm">
   <div class="row">
     <div class="col s8 offset-s2">
       <div class="card-panel">
@@ -65,7 +67,8 @@
         <!-- Pokemon types -->
         <form class="form-group">
           <label for="types">Types</label>
-          <p *ngFor="let type of types">
+          @for (type of types ; track $index)
+           {<p >
             <label>
               <input type="checkbox"
                 class="filled-in"
@@ -81,6 +84,8 @@
               </span>
             </label>
           </p>
+        }
+          
         </form>
   
         <!-- Submit button -->
@@ -96,8 +101,8 @@
     </div>
   </div>
 </form>
-}else {
-  <h3 *ngIf="!pokemon" class="center">
+}@else {
+  <h3  class="center">
     <app-loader></app-loader>
   </h3>
 }

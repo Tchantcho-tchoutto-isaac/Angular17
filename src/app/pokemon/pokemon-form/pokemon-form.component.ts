@@ -1,41 +1,52 @@
-import { Component, OnInit, input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core'; // Modifier 'input' en 'Input'
 import { PokemonService } from '../pokemon.service';
 import { Pokemon } from '../pokemon';
-import {Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pokemon-form',
   templateUrl: './pokemon-form.component.html',
-  styleUrl: './pokemon-form.component.css'
+  styleUrls: ['./pokemon-form.component.css'] // Modifier 'styleUrl' en 'styleUrls'
 })
 export class PokemonFormComponent implements OnInit {
-@Input() Pokemon:Pokemon;
-type:string[];
+  @Input() pokemon: Pokemon; // Modifier 'Pokemon' en 'pokemon' (nom de variable en minuscules)
+  type: string[];
 
-  constructor(private pokemonservice:PokemonService,private router :Router){
-
-  }
+  constructor(private pokemonService: PokemonService, private router: Router) {}
 
   ngOnInit() {
-    this.type=this.pokemonservice.getPokemonTypeList();
-      
+    this.type = this.pokemonService.getPokemonTypeList();
   }
- hasType(type:string):boolean{
-  return this.Pokemon.types.includes(type);
- }
-selectType($event:Event,type:string){
-const ischeked:boolean =($event.target as HTMLInputElement).checked  
-if (ischeked) {
-  this.Pokemon.types.push(type);
   
-}else{
-  const index=this.Pokemon.types.indexOf(type);
-  this.Pokemon.types.splice(index,1);
-}
+  hasType(type: string): boolean {
+    return this.pokemon.types.includes(type);
+  }
+  isTypesValid(type:string): boolean{
+    if (this.pokemon.types.length==1 && this.hasType(type)) {
+      return false;
+    }
+    if (this.pokemon.types.length >2 && !this.hasType(type)) {
+      return false ;
+      
+    }
+    
 
-}
-onsubmit(){
- console.log('submit form');
- this.router.navigate(['/pokemon',this.Pokemon.id])
-}
+    return true;
+
+  }
+
+  selectType($event: Event, type: string) {
+    const isChecked: boolean = ($event.target as HTMLInputElement).checked;
+    if (isChecked) {
+      this.pokemon.types.push(type);
+    } else {
+      const index = this.pokemon.types.indexOf(type);
+      this.pokemon.types.splice(index, 1);
+    }
+  }
+
+  onSubmit() {
+    console.log('submit form');
+    this.router.navigate(['/pokemon', this.pokemon.id]);
+  }
 }

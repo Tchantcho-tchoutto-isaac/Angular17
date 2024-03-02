@@ -9,7 +9,7 @@ export class PokemonService {
   constructor (private http:HttpClient){
 
   }
-  getPokemon(): Observable<Pokemon[]> {
+  getPokemonList(): Observable<Pokemon[]> {
     return this.http.get<Pokemon[]>('api/pokemons').pipe(
       tap((response) => this.log(response)),
       catchError((error) => this.handleError(error,undefined)));

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PokemonModule } from './pokemon/pokemon.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { PokemonModule } from './pokemon/pokemon.module';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     PokemonModule,
     AppRoutingModule,
     

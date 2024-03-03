@@ -1,38 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from '../pokemon';
 import { ActivatedRoute, Router } from '@angular/router';
-import { POKEMONS } from '../mock-pokemon-list';
 import { PokemonService } from '../pokemon.service';
-
-
 
 @Component({
   selector: 'app-detail-pokemon',
   templateUrl: './detail-pokemon.component.html',
-  styleUrl: './detail-pokemon.component.css'
+  styleUrls: ['./detail-pokemon.component.css'] // Correction de 'styleUrl' en 'styleUrls'
 })
-export class DetailPokemonComponent  implements OnInit {
-  pokemonList:Pokemon[];
-  pokemon:Pokemon|undefined;
+export class DetailPokemonComponent implements OnInit {
+  pokemon: Pokemon | undefined;
 
-  constructor(private route:ActivatedRoute,private router:Router,private PokemonService:PokemonService){}
-  
-  
-  ngOnInit() { // Ajout de la méthode ngOnInit
+  constructor(private route: ActivatedRoute, private router: Router, private pokemonService: PokemonService) { } // Correction de 'PokemonService' en 'pokemonService'
 
+  ngOnInit() {
     const pokemonId: string | null = this.route.snapshot.paramMap.get('id');
 
     if (pokemonId) {
-      this.PokemonService.getPokemonById(+pokemonId).subscribe(pokemon=>this.pokemon=this.pokemon)
+      this.pokemonService.getPokemonById(+pokemonId).subscribe(pokemon => this.pokemon = pokemon); // Correction de 'this.pokemon = this.pokemon' en 'this.pokemon = pokemon'
     }
   }
 
-  goToPokemonList(){
-    this.router.navigate(['/pokemons'])
+  goToPokemonList() {
+    this.router.navigate(['/pokemons']);
   }
 
-
-  goToEditPokemon(Pokemon:Pokemon){
-    this.router.navigate(['edit/pokemon',Pokemon.id]);
+  goToEditPokemon(pokemon: Pokemon) { // Correction de 'Pokemon' en 'pokemon'
+    this.router.navigate(['edit/pokemon', pokemon.id]);
   }
 }
+

@@ -50,6 +50,6 @@ export class PokemonFormComponent implements OnInit {
      .subscribe(()=>this.router.navigate(['/pokemon',this.pokemon.id])
       
       )
-    //this.router.navigate(['/pokemon', this.pokemon.id]);
+  
   }
 }

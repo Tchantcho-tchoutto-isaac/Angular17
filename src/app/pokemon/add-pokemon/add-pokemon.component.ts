@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Pokemon } from '../pokemon';
 
 @Component({
   selector: 'app-add-pokemon',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './add-pokemon.component.css'
 })
 export class AddPokemonComponent {
+  pokemon:Pokemon
 
 }

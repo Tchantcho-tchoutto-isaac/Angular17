@@ -11,11 +11,13 @@ import { Router } from '@angular/router';
 export class PokemonFormComponent implements OnInit {
   @Input() pokemon: Pokemon; // Modifier 'Pokemon' en 'pokemon' (nom de variable en minuscules)
   type: string[];
+  isAddForm:boolean;
 
   constructor(private pokemonService: PokemonService, private router: Router) {}
 
   ngOnInit() {
     this.type = this.pokemonService.getPokemonTypeList();
+    this.isAddForm=this.router.url.includes('add');
   }
   
   hasType(type: string): boolean {
@@ -46,6 +48,11 @@ export class PokemonFormComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.isAddForm) {
+      this.pokemonService.addPokemon(this.pokemon)
+      .subscribe((pokemon:Pokemon)=>this.router.navigate(['pokemon',pokemon.id]))
+      
+    }
      this.pokemonService.updatePokemon(this.pokemon)
      .subscribe(()=>this.router.navigate(['/pokemon',this.pokemon.id])
       

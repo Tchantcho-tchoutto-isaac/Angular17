@@ -15,6 +15,15 @@ export class PokemonService {
       tap((response) => this.log(response)),
       catchError((error) => this.handleError(error,undefined)));
   }
+  searchPokemonList(pokemonId: number): Observable<Pokemon | undefined> {
+    return this.http.get<Pokemon>(`api/pokemons/${pokemonId}`).pipe(
+      tap((response) => this.log(response)),
+      catchError((error) => {
+        console.error(error);
+        return this.handleError(error, undefined);
+      })
+    );
+  }
 
   addPokemon(pokemon: Pokemon): Observable<Pokemon> {
     const httpOptions = {

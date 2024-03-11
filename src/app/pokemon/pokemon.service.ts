@@ -20,12 +20,11 @@ export class PokemonService {
       tap((response) => this.log(response)),
       catchError((error) => {
         console.error(error);
-        return this.handleError(error, [])
-        
-        ;
+        return this.handleError(error, []);
       })
     );
   }
+  
 
   addPokemon(pokemon: Pokemon): Observable<Pokemon> {
     const httpOptions = {

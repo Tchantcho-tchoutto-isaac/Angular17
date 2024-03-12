@@ -14,6 +14,9 @@ export class SearchPokemonComponent  implements OnInit{
  pokemons$:Observable<Pokemon[]>; 
   constructor(private router:Router){}
   ngOnInit(): void {
+    this.pokemons$=this.seachTerms.pipe(
+      
+    )
      
   }
   search(term: string){

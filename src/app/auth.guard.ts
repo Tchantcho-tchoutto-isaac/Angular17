@@ -1,5 +1,15 @@
-import { CanActivateFn } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { CanActivate } from '@angular/router';
+@Injectable({
+  providedIn:'root'
+})
 
-export const authGuard: CanActivateFn = (route, state) => {
-  return true;
+export class AuthGuard implements CanActivate {
+  
+  CanActivate(){
+    console.log('le guard a bien été appelé');
+    return true;
+
+  }
+  
 };

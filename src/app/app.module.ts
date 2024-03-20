@@ -8,7 +8,6 @@ import { PokemonModule } from './pokemon/pokemon.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api'
 import{InMemoryDataService} from './in-memory-data.service';
-import { TestComponent } from './test/test.component';
 import { LoginComponent } from './login/login.component';
 
 
@@ -16,7 +15,6 @@ import { LoginComponent } from './login/login.component';
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    TestComponent,
     LoginComponent
   ],
   imports: [

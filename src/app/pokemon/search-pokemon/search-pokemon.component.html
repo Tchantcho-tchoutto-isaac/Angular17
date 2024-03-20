@@ -7,7 +7,7 @@
           </div>
           <div class="collection">
             @for (pokemon of pokemons$ | async ; track $index) { 
-            <a href="#" class="collection-item" 
+            <a href=""  (click)="goToDetail(pokemon)"  class="collection-item" 
             >
               {{ pokemon.name }}
             </a> }

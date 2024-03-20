@@ -1,39 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { Pokemon } from '../pokemon';
 import { Router } from '@angular/router';
-import { Observable, Subject, debounce, debounceTime, distinct, distinctUntilChanged, switchMap } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Pokemon } from '../pokemon';
 import { PokemonService } from '../pokemon.service';
-
 
 @Component({
   selector: 'app-search-pokemon',
   templateUrl: './search-pokemon.component.html',
-  styleUrl: './search-pokemon.component.css'
+  styleUrls: ['./search-pokemon.component.css']
 })
-export class SearchPokemonComponent  implements OnInit{
- seachTerms=new Subject<string>();
- pokemons$:Observable<Pokemon[]>; 
+export class SearchPokemonComponent implements OnInit {
+  searchTerms = new Subject<string>();
+  pokemons$: Observable<Pokemon[]>;
 
-  constructor(private router:Router, private pokemonService:PokemonService){}
-
+  constructor(private router: Router, private pokemonService: PokemonService) { }
 
   ngOnInit(): void {
-    this.pokemons$=this.seachTerms.pipe(
-      //{..."a","ab"..."abz"."ab"...."abc"....}
-      debounceTime(300),
+    this.pokemons$ = this.searchTerms.pipe(
+      debounceTime(30),
       distinctUntilChanged(),
-
-      switchMap((term)=>this.pokemonService.searchPokemonList(term))
-
-    )
-     
+      switchMap((term) => this.pokemonService.searchPokemonList(term))
+    );
   }
-  search(term: string){
 
+  search(term: string): void {
+    this.searchTerms.next(term);
   }
-   goToDetail(pokemon: Pokemon){
 
-    const link =['/pokemon',pokemon.id];
+  goToDetail(pokemon: Pokemon): void {
+    const link = ['/pokemon', pokemon.id];
     this.router.navigate(link);
-   }
+  }
 }
